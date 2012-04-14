@@ -1,0 +1,28 @@
+<p>
+  <b>Reviewer email:</b>
+  <%=h @review.reviewer_email %>
+</p>
+
+<p>
+  <b>Date created:</b>
+  <%=h @review.date_created %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @review.rating %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%=h @review.website_id %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @review.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

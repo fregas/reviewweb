@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Title      : Vertebrate 
+Version    : 1.0
+Released   : 20100428
+Description: A two-column fixed-width template suitable for small websites.
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Review Some Websites! Website reviews, technical specs, ip addresses, comments and information.</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="google-site-verification" content="LAJiIAOA0urRR7lLU1EKnt0Zjj1RaSnE__FRq5Tb9VU" />
+
+<%= stylesheet_link_tag 'default', 'gallery', :cache => '_cache/site_styles' %>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2729842-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+	<div id="logo">
+		<h1><a href="/">Review Some Websites</a></h1>
+      <!--
+		<h2><a href="/">ReviewSomeWebsites.com - Website Reviews, Info, Tech Specs, Reverse IP</a></h2> --!>
+	</div>
+	<!-- end div#logo -->
+	<div id="menu">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><%= link_to 'New Sites', :controller => 'newsites' %></li>
+			<li><%= link_to 'About', :controller => 'about' %></li>
+			<li><%= link_to 'Contact Us', :controller => 'contact' %></li>
+		</ul>
+	</div>
+	<!-- end div#menu -->
+</div>
+<div>
+	<div id="page">
+		<div id="page-bgtop">
+			<div id="content">
+          	<%= yield %>
+			</div>
+			<!-- end div#content -->
+
+         <% cache(:key => 'sidebar', :action_suffix => 'side') do %> 
+			<div id="sidebar">
+				<div id="sidebar-bgtop">
+					<div id="sidebar-bgbtm">
+						<ul>
+							<li id="search">
+								<h2>Search</h2>
+                        <% form_tag (search_path, :method => 'get') do %>
+									
+                           <fieldset>
+                            <label for="domain_name">
+                              http://
+                            </label>
+                            &nbsp;
+                              <%= text_field_tag :domain_name, '', :class => 'search-text'  %>
+                              <%= submit_tag 'Go', :id => 'search-submit' %>
+									</fieldset>
+                             <br /> (Enter a domain name and hit "go")
+
+							   <% end %>	
+							</li>
+                   
+                     <%= render :partial => "layouts/google_ad_vert" %><br />
+
+
+							<li>
+								<h2>Recent Reviews</h2>
+								<ul>
+                        <% @recent_reviews.each do |review| %>
+									<li>
+                            <%= link_to_site review.website %> - <%= review.comment_brief %>
+                           </li>
+                        <% end %>
+								</ul>
+							</li>
+							<li>
+								<h2>Recently Added Sites</h2>
+								<ul>
+                        <% @recent_websites.each do |website| %>
+								  <li>
+                            <%= link_to_site website %>
+                          </li>
+                        <% end %>
+								</ul>
+							</li>
+
+                     
+
+                  </ul>
+					</div>
+				</div>
+			</div>
+         <% end %>
+			<!-- end div#sidebar -->
+			<div style="clear: both; height: 1px"></div>
+		</div>
+	</div>
+	<!-- end div#page -->
+</div>
+<!-- end div#wrapper -->
+<div id="footer-wrapper">
+	<div id="footer">
+		<p id="legal">Copyright &copy; 2007 Vertebrate . All Rights Reserved. Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+		<p id="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+	</div>
+</div>
+<!-- end div#footer -->
+
+<%= javascript_include_tag "jquery/jquery","jquery/jquery.slidertron", :cache => '_cache/main_scripts'  %>
+
+
+<%= yield :scripts %>
+
+</body>
+</html>

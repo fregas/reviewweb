@@ -1,0 +1,12 @@
+<h1>Editing rss_feed</h1>
+
+<% form_for(@rss_feed) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @rss_feed %> |
+<%= link_to 'Back', rss_feeds_path %>

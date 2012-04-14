@@ -1,0 +1,136 @@
+
+
+<% content_for :scripts do %>
+
+  <%= javascript_include_tag "review", "jquery/jquery.ui", "jquery/captcha/jquery.captcha"  %>
+
+<% end %>
+
+<%= stylesheet_link_tag '/javascripts/jquery/captcha/captcha.css' %>
+<%= stylesheet_link_tag 'default' %>
+
+<script type="text/javascript" charset="utf-8">
+ $(function() {
+ $(".ajax-fc-container").captcha(
+  { 
+    url: '<%= url_for :action => 'get_rand' %>' , 
+    formId: "review_form", 
+    captchaDir: '/javascripts/jquery/captcha/' 
+  });
+ });
+</script>
+
+
+<div class="post">
+      <div class="post-bgtop">
+              <div class="post-bgbtm">
+                      <img src="http://snapcasa.com/get.aspx?code=8549&size=m&url=<%= @website.domain_name %>" style="float:right" />				
+                      <h2 class="title"><%= @website.domain_name %></h2>
+
+                      <p class="byline"> Added on <%= @website.last_indexed %></p>
+                      
+                      <div class="entry">                      
+                        Title: <%= @website.title %><br />
+                        IP: <%= @website.ip_address %><br />
+                        Description: <%= @website.description %><br />								
+                        Server: <%= @website.server %><br />
+                      </div>
+                    
+                       <%= render :partial => "layouts/google_ad_horiz" %><br />
+
+
+                      <p>
+                         <%= link_to "Visit #{@website.domain_name}", "http://#{@website.domain_name}", :target => 'blank', :class => 'biglink' %>
+                      </p>
+
+                      <div class="meta">
+                              <p>
+                                      <h3>Tags:</h3> <%= @website.tags %>
+                              </p>
+                      </div>
+                      <div class="meta">
+                              <p>
+                                <h3>Other Sites at this IP:</h3> 
+                              <% @website.other_sites.each do |website| %>
+                                      <%= link_to website.domain_name, sitedetails_path(  website.domain_name) %>
+                                      &nbsp;&nbsp;
+                              <% end %>
+                                                                      
+                              </p>
+                      </div>				
+                      <div class="meta">
+                            <% if @website.reviews.count > 0 %>
+
+                              <h3>Reviews for <%= @website.domain_name %></h3>
+
+                             
+                              <% @website.reviews.each do |review| %>
+                                <p class="review">
+                                  <%= show_stars review.rating %><br />
+                                  Reviewed By: <%= review.reviewer_name %> on <%= review.created_at.strftime "%m/%d/%y at %I:%M %p" %> <br />
+                                  <%= review.comment %> <br />
+                                </p>       
+                                                                                                                 
+                              <% end %>
+                              <br />	
+
+                             <% end %>
+
+                              <div>
+                                 <%= render :partial => "layouts/google_ad_horiz" %><br />
+
+                              </div>
+
+
+
+
+                              <h3>Add a Review!</h3>
+
+                              <% form_for :new_review, @new_review, :html => {:id => 'review_form'},
+                                      :url => { :anchor => 'reviews', :controller => 'sitedetails', :action => 'add_review'}   do |f| %>
+                       
+                              <a name="reviews"></a>
+                              <% if flash[:notice] != nil %>
+                              <div class="notice">
+                                <%= flash[:notice] %>                                      
+                              </div>
+                            <% end %>
+
+ 
+                            <div>
+                              <%= error_messages_for :new_review %>
+                            </div>
+                    
+                             <input type="hidden" name="domain_name" value="<%= @website.domain_name %>">
+                                <p>
+                                  <%= f.label :review_name %> <br />
+                                  <%= f.text_field :reviewer_name %>
+                                </p>
+                           
+                                <p>
+                                  <%= f.label :reviewer_email %> (not shared) <br />
+                                  <%= f.text_field :reviewer_email %>
+                                </p>
+                               
+                                <p>
+                                <%= f.label :rating %><br />
+                                 <%= review_widget :new_review %> 
+                              </p>
+                              
+                              <p>
+                                <%= f.label :comment %><br />
+                                <%= f.text_area :comment %>
+                              </p>
+                              <p>   
+                                 <div class="ajax-fc-container"></div>
+                              </p>
+                              <br />
+                              <p>
+                                <%= f.submit 'Submit!' %>
+                              </p>
+                            <% end %>
+                         
+                    </div>
+            </div>
+    </div>
+</div>

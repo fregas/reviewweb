@@ -1,0 +1,52 @@
+<h1>Editing website</h1>
+
+<% form_for(@website) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :domain_name %><br />
+    <%= f.text_field :domain_name %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :ip_address %><br />
+    <%= f.text_field :ip_address %>
+  </p>
+  <p>
+    <%= f.label :server %><br />
+    <%= f.text_field :server %>
+  </p>
+  <p>
+    <%= f.label :tags %><br />
+    <%= f.text_area :tags %>
+  </p>
+  <p>
+    <%= f.label :last_indexed %><br />
+    <%= f.datetime_select :last_indexed %>
+  </p>
+  <p>
+    <%= f.label :created_at %><br />
+    <%= f.datetime_select :created_at %>
+  </p>
+  <p>
+    <%= f.label :updated_at %><br />
+    <%= f.datetime_select :updated_at %>
+  </p>
+  <p>
+    <%= f.label :in_sitemap %><br />
+    <%= f.check_box :in_sitemap %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @website %> |
+<%= link_to 'Back', websites_path %>

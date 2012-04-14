@@ -1,0 +1,53 @@
+<p>
+  <b>Domain name:</b>
+  <%=h @website.domain_name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @website.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @website.description %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%=h @website.ip_address %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%=h @website.server %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%=h @website.tags %>
+</p>
+
+<p>
+  <b>Last indexed:</b>
+  <%=h @website.last_indexed %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @website.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @website.updated_at %>
+</p>
+
+<p>
+  <b>In sitemap:</b>
+  <%=h @website.in_sitemap %>
+</p>
+
+
+<%= link_to 'Edit', edit_website_path(@website) %> |
+<%= link_to 'Back', websites_path %>

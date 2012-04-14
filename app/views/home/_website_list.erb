@@ -1,0 +1,34 @@
+<div class="post">
+	<div class="post-bgtop">
+		<div class="post-bgbtm">
+        <%= render :partial => "layouts/google_ad_horiz" %><br />
+     </div>
+   </div>
+</div>
+
+
+<% @websites.each do |website| %>
+
+	<div class="post">
+		<div class="post-bgtop">
+			<div class="post-bgbtm">
+          
+				<h2 class="title"><%= link_to_site website %></h2>
+				<p class="byline"> Added on <%= website.created_at.strftime "%m/%d/%y at %I:%M %p" %></p>
+				<div class="entry">
+					<p>
+						<%= website.description %>
+					</p>
+				</div>
+				<div class="meta">
+					<p>
+						<%= link_to "View More", sitedetails_path(  website.domain_name), :class => 'more' %>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<% end %>
+
+

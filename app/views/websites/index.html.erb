@@ -1,0 +1,38 @@
+<h1>Listing websites</h1>
+
+<table>
+  <tr>
+    <th>Domain name</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Ip address</th>
+    <th>Server</th>
+    <th>Tags</th>
+    <th>Last indexed</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>In sitemap</th>
+  </tr>
+
+<% @websites.each do |website| %>
+  <tr>
+    <td><%=h website.domain_name %></td>
+    <td><%=h website.title %></td>
+    <td><%=h website.description %></td>
+    <td><%=h website.ip_address %></td>
+    <td><%=h website.server %></td>
+    <td><%=h website.tags %></td>
+    <td><%=h website.last_indexed %></td>
+    <td><%=h website.created_at %></td>
+    <td><%=h website.updated_at %></td>
+    <td><%=h website.in_sitemap %></td>
+    <td><%= link_to 'Show', website %></td>
+    <td><%= link_to 'Edit', edit_website_path(website) %></td>
+    <td><%= link_to 'Destroy', website, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New website', new_website_path %>
