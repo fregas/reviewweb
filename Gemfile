@@ -12,6 +12,11 @@ gem "will_paginate", "~> 3.0.pre2"
 #gem "will_paginate", "2.3.15"
 gem 'hpricot', '0.8.2'
 
+gem "bundler"
+gem "amalgalite"
+gem "sqlite3-ruby"
+gem "sequel"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
